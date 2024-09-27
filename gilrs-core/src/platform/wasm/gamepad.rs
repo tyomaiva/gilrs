@@ -196,7 +196,7 @@ impl Gilrs {
 enum Mapping {
     Standard {
         buttons: [(bool, f64); 17],
-        axes: [f64; 4],
+        axes: [f64; 6],
     },
     NoMapping {
         buttons: Vec<(bool, f64)>,
@@ -291,7 +291,7 @@ impl Gamepad {
         let mapping = match gamepad.mapping() {
             GamepadMappingType::Standard => {
                 let mut buttons = [(false, 0.0); 17];
-                let mut axes = [0.0; 4];
+                let mut axes = [0.0; 6];
 
                 for (index, button) in button_iter.enumerate().take(buttons.len()) {
                     buttons[index] = (button.pressed(), button.value());
@@ -439,8 +439,8 @@ pub mod native_ev_codes {
     pub const AXIS_RIGHTZ: EvCode = EvCode(5);
     pub const AXIS_DPADX: EvCode = EvCode(6);
     pub const AXIS_DPADY: EvCode = EvCode(7);
-    pub const AXIS_RT: EvCode = EvCode(8);
-    pub const AXIS_LT: EvCode = EvCode(9);
+    pub const AXIS_LT: EvCode = EvCode(8);
+    pub const AXIS_RT: EvCode = EvCode(9);
     pub const AXIS_RT2: EvCode = EvCode(10);
     pub const AXIS_LT2: EvCode = EvCode(11);
 
@@ -485,5 +485,5 @@ pub mod native_ev_codes {
         BTN_MODE,
     ];
 
-    pub(super) static AXES: [EvCode; 4] = [AXIS_LSTICKX, AXIS_LSTICKY, AXIS_RSTICKX, AXIS_RSTICKY];
+    pub(super) static AXES: [EvCode; 6] = [AXIS_LSTICKX, AXIS_LSTICKY, AXIS_RSTICKX, AXIS_RSTICKY, AXIS_LT, AXIS_RT];
 }
