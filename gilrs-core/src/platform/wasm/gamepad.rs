@@ -179,7 +179,7 @@ impl Gilrs {
         self.event_cache.pop_front()
     }
 
-    pub(crate) fn next_event_blocking(&mut self, timeout: Option<Duration>) -> Option<Event> {
+    pub(crate) fn next_event_blocking(&mut self, _timeout: Option<Duration>) -> Option<Event> {
         unimplemented!("next_event_blocking is not supported on web. Use next_event.")
     }
 
@@ -439,10 +439,12 @@ pub mod native_ev_codes {
     pub const AXIS_RIGHTZ: EvCode = EvCode(5);
     pub const AXIS_DPADX: EvCode = EvCode(6);
     pub const AXIS_DPADY: EvCode = EvCode(7);
-    pub const AXIS_LT: EvCode = EvCode(8);
-    pub const AXIS_RT: EvCode = EvCode(9);
-    pub const AXIS_RT2: EvCode = EvCode(10);
-    pub const AXIS_LT2: EvCode = EvCode(11);
+    // Intentionally unusable values
+    pub const AXIS_LT2: EvCode = EvCode(88);
+    pub const AXIS_RT2: EvCode = EvCode(89);
+
+    pub const AXIS_RT: EvCode = EvCode(10);
+    pub const AXIS_LT: EvCode = EvCode(11);
 
     pub const BTN_SOUTH: EvCode = EvCode(12);
     pub const BTN_EAST: EvCode = EvCode(13);
@@ -452,8 +454,8 @@ pub mod native_ev_codes {
     pub const BTN_Z: EvCode = EvCode(17);
     pub const BTN_LT: EvCode = EvCode(18);
     pub const BTN_RT: EvCode = EvCode(19);
-    pub const BTN_LT2: EvCode = EvCode(20);
-    pub const BTN_RT2: EvCode = EvCode(21);
+    pub const BTN_LT2: EvCode = EvCode(8);
+    pub const BTN_RT2: EvCode = EvCode(9);
     pub const BTN_SELECT: EvCode = EvCode(22);
     pub const BTN_START: EvCode = EvCode(23);
     pub const BTN_MODE: EvCode = EvCode(24);
@@ -485,5 +487,5 @@ pub mod native_ev_codes {
         BTN_MODE,
     ];
 
-    pub(super) static AXES: [EvCode; 6] = [AXIS_LSTICKX, AXIS_LSTICKY, AXIS_RSTICKX, AXIS_RSTICKY, AXIS_LT, AXIS_RT];
+    pub(super) static AXES: [EvCode; 6] = [AXIS_LSTICKX, AXIS_LSTICKY, AXIS_RSTICKX, AXIS_RSTICKY, AXIS_LT2, AXIS_RT2];
 }
